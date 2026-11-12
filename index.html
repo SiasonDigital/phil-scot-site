@@ -53,8 +53,15 @@
   /* tablet: the text and steps stack over a full-width form, across two screens */
   @media (min-width: 640px) and (max-width: 1023px) { #enquire { --h: 2; } #enquire .form.card { grid-column: 1 / -1; } }
   /* the enquiry form on the flat alt ground (booking-form recipe: 48px padding) */
-  #enquire .form.card { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-5); align-content: start; align-self: start; background: var(--surface); border: 0; box-shadow: none; padding: var(--s-7); border-radius: var(--r-lg); }
+  #enquire .form.card { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4) var(--s-5); align-content: start; align-self: start; background: var(--surface); border: 0; box-shadow: none; padding: var(--s-7); border-radius: var(--r-lg); }
   @media (max-width: 639px) { #enquire .form { padding: var(--s-5); } }
+  @media (max-width: 639px) { #enquire .form.card { grid-template-columns: minmax(0, 1fr); } }
+  #enquire .form.card textarea { min-height: 112px; }
+  /* no section may hold more than its box: on a short window a section grows with its content instead of running into the next */
+  main > section:not(.hero), footer.closing { height: auto !important; min-height: calc(var(--h, 1) * 100svh); }
+  @media (max-width: 639px) { main > section:not(.hero), footer.closing { min-height: calc(var(--hm, var(--h, 1)) * 100lvh); } }
+  main > section.hero { min-height: 100svh; height: auto !important; }
+  main > section:not(.hero) > .wrap, main > section:not(.hero) .fill, footer.closing > .wrap { flex: 0 0 auto !important; min-height: auto !important; height: auto !important; }
   /* the company logo: the P+S block and the stacked wordmark; the footer copy is never larger than the header's */
   .nav__logo .brand-logo { display: block; width: auto; height: 52px; max-width: none; }
   .footer .nav__logo .brand-logo { height: 44px; }
